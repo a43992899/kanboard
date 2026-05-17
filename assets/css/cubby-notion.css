@@ -1,0 +1,461 @@
+/* CubbyLab Notion-like skin. Keep this file as a thin visual layer over Kanboard. */
+
+:root {
+    --cubby-bg: #f7f6f3;
+    --cubby-surface: rgba(255, 255, 255, 0.92);
+    --cubby-surface-strong: #ffffff;
+    --cubby-panel: #f1f1ee;
+    --cubby-panel-soft: #f7f7f5;
+    --cubby-border: rgba(55, 53, 47, 0.12);
+    --cubby-border-strong: rgba(55, 53, 47, 0.2);
+    --cubby-text: #2f2d29;
+    --cubby-muted: #78746d;
+    --cubby-faint: #a8a29a;
+    --cubby-accent: #2563eb;
+    --cubby-accent-soft: rgba(37, 99, 235, 0.12);
+    --cubby-success: #0f766e;
+    --cubby-warning: #b45309;
+    --cubby-danger: #b42318;
+    --cubby-shadow: 0 14px 36px rgba(23, 23, 23, 0.08);
+    --cubby-card-shadow: 0 8px 24px rgba(23, 23, 23, 0.08);
+    --cubby-radius: 10px;
+    --cubby-radius-sm: 8px;
+    --body-background-color: var(--cubby-bg);
+    --header-background-color: rgba(247, 246, 243, 0.9);
+    --color-primary: var(--cubby-text);
+    --color-light: var(--cubby-muted);
+    --color-lighter: var(--cubby-faint);
+    --link-color-primary: var(--cubby-accent);
+    --table-border-color: var(--cubby-border);
+    --table-header-background-color: var(--cubby-panel);
+    --table-nth-background-color: rgba(255, 255, 255, 0.48);
+    --panel-border-color: var(--cubby-border);
+    --panel-background-color: var(--cubby-surface);
+    --input-background-color: var(--cubby-surface-strong);
+    --input-border-color: var(--cubby-border-strong);
+    --input-focus-border-color: var(--cubby-accent);
+    --input-focus-shadow-color: rgba(37, 99, 235, 0.14);
+    --button-default-border-color: var(--cubby-border-strong);
+    --button-default-background-color: var(--cubby-surface-strong);
+    --button-default-color: var(--cubby-text);
+    --button-default-border-color-focus: rgba(37, 99, 235, 0.28);
+    --button-default-background-color-focus: var(--cubby-accent-soft);
+    --button-default-color-focus: var(--cubby-accent);
+    --button-primary-border-color: var(--cubby-accent);
+    --button-primary-background-color: var(--cubby-accent);
+    --button-primary-color: #ffffff;
+    --button-primary-border-color-focus: #1d4ed8;
+    --button-primary-background-color-focus: #1d4ed8;
+    --button-primary-color-focus: #ffffff;
+}
+
+html.theme-dark {
+    --cubby-bg: #191919;
+    --cubby-surface: rgba(32, 32, 32, 0.9);
+    --cubby-surface-strong: #252525;
+    --cubby-panel: #202020;
+    --cubby-panel-soft: #242424;
+    --cubby-border: rgba(255, 255, 255, 0.09);
+    --cubby-border-strong: rgba(255, 255, 255, 0.16);
+    --cubby-text: #e8e4dc;
+    --cubby-muted: #aaa49a;
+    --cubby-faint: #817b72;
+    --cubby-accent: #6aa6ff;
+    --cubby-accent-soft: rgba(106, 166, 255, 0.14);
+    --cubby-success: #4fd1c5;
+    --cubby-warning: #f6ad55;
+    --cubby-danger: #ff8a80;
+    --cubby-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+    --cubby-card-shadow: 0 10px 28px rgba(0, 0, 0, 0.26);
+}
+
+@media (prefers-color-scheme: dark) {
+    html.theme-auto {
+        --cubby-bg: #191919;
+        --cubby-surface: rgba(32, 32, 32, 0.9);
+        --cubby-surface-strong: #252525;
+        --cubby-panel: #202020;
+        --cubby-panel-soft: #242424;
+        --cubby-border: rgba(255, 255, 255, 0.09);
+        --cubby-border-strong: rgba(255, 255, 255, 0.16);
+        --cubby-text: #e8e4dc;
+        --cubby-muted: #aaa49a;
+        --cubby-faint: #817b72;
+        --cubby-accent: #6aa6ff;
+        --cubby-accent-soft: rgba(106, 166, 255, 0.14);
+        --cubby-success: #4fd1c5;
+        --cubby-warning: #f6ad55;
+        --cubby-danger: #ff8a80;
+        --cubby-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+        --cubby-card-shadow: 0 10px 28px rgba(0, 0, 0, 0.26);
+    }
+}
+
+html {
+    background: var(--cubby-bg);
+}
+
+body {
+    background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.07), transparent 30rem),
+        linear-gradient(180deg, var(--cubby-bg), var(--cubby-bg));
+    color: var(--cubby-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+a {
+    color: var(--cubby-accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    gap: 14px;
+    align-items: center;
+    padding: 14px 22px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--cubby-border);
+    background: var(--header-background-color);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+header .title-container,
+header .board-selector-container,
+header .menus-container {
+    min-width: 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 650;
+    letter-spacing: 0;
+}
+
+header h1 a {
+    color: var(--cubby-text);
+    text-decoration: none;
+}
+
+header h1 a:hover,
+header h1 a:focus {
+    color: var(--cubby-accent);
+}
+
+.page {
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 0 22px 32px;
+}
+
+.page-header {
+    margin-bottom: 16px;
+}
+
+.page-header h2,
+.page-header h3 {
+    font-weight: 650;
+    letter-spacing: 0;
+}
+
+.panel,
+fieldset,
+.accordion-section,
+.page-header,
+.table-list,
+.listing {
+    border-color: var(--cubby-border);
+}
+
+.panel,
+fieldset {
+    border-radius: var(--cubby-radius);
+    background: var(--cubby-surface);
+    box-shadow: var(--cubby-card-shadow);
+}
+
+fieldset {
+    padding: 18px;
+}
+
+legend {
+    padding: 0 8px;
+    color: var(--cubby-muted);
+    font-size: 0.86rem;
+    font-weight: 650;
+    text-transform: uppercase;
+}
+
+.btn,
+button,
+input[type="submit"] {
+    min-height: 32px;
+    border-radius: var(--cubby-radius-sm);
+    padding: 6px 12px;
+    font-size: 0.95rem;
+    font-weight: 560;
+    box-shadow: none;
+}
+
+.btn:hover,
+button:hover,
+input[type="submit"]:hover {
+    transform: translateY(-1px);
+}
+
+input[type="number"],
+input[type="date"],
+input[type="email"],
+input[type="password"],
+input[type="text"]:not(.input-addon-field),
+textarea,
+select,
+.select2-container .select2-choice,
+.select-dropdown-input-container input {
+    min-height: 34px;
+    border-radius: var(--cubby-radius-sm);
+    border-color: var(--cubby-border-strong);
+    background: var(--cubby-surface-strong);
+    color: var(--cubby-text);
+}
+
+textarea {
+    min-height: 150px;
+    padding: 10px 12px;
+}
+
+label {
+    color: var(--cubby-muted);
+    font-size: 0.92rem;
+    font-weight: 560;
+}
+
+table th,
+table td {
+    border-color: var(--cubby-border);
+    padding: 9px 8px;
+}
+
+table th {
+    color: var(--cubby-muted);
+    font-size: 0.82rem;
+    font-weight: 650;
+    text-transform: uppercase;
+}
+
+.dropdown > ul {
+    border: 1px solid var(--cubby-border);
+    border-radius: var(--cubby-radius);
+    background: var(--cubby-surface-strong);
+    box-shadow: var(--cubby-shadow);
+    overflow: hidden;
+}
+
+.dropdown > ul li {
+    padding: 4px 8px;
+}
+
+.dropdown > ul a {
+    color: var(--cubby-text);
+}
+
+.alert {
+    border-radius: var(--cubby-radius);
+    border-color: var(--cubby-border);
+    box-shadow: var(--cubby-card-shadow);
+}
+
+#board-container {
+    margin: 0 -8px;
+    padding: 0 8px 20px;
+}
+
+#board {
+    border-collapse: separate;
+    border-spacing: 12px 0;
+}
+
+#board th,
+#board td {
+    border: 0;
+}
+
+#board th.board-column-header {
+    width: 290px;
+    min-width: 290px;
+    padding: 0 0 10px;
+    background: transparent;
+}
+
+.board-column-expanded-header {
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid var(--cubby-border);
+    border-radius: var(--cubby-radius) var(--cubby-radius) 0 0;
+    background: var(--cubby-panel);
+}
+
+.board-column-title {
+    min-width: 0;
+    flex: 1;
+    font-weight: 650;
+}
+
+.board-column-title a.dropdown-menu {
+    color: var(--cubby-text);
+    text-decoration: none;
+}
+
+.board-column-header-task-count {
+    color: var(--cubby-muted);
+    font-size: 0.78rem;
+}
+
+.board-add-icon {
+    padding: 0 8px 0 0;
+}
+
+.board-add-icon i {
+    color: var(--cubby-muted);
+    font-size: 1.05rem;
+}
+
+.board-add-icon i:hover,
+.board-add-icon i:focus {
+    color: var(--cubby-accent);
+}
+
+.board-task-list {
+    min-height: 70vh;
+    padding: 10px;
+    border: 1px solid var(--cubby-border);
+    border-top: 0;
+    border-radius: 0 0 var(--cubby-radius) var(--cubby-radius);
+    background: var(--cubby-panel-soft);
+}
+
+.board-task-list-compact {
+    max-height: calc(100vh - 170px);
+}
+
+.task-board {
+    margin-bottom: 10px;
+    border: 1px solid var(--cubby-border);
+    border-radius: var(--cubby-radius-sm);
+    background: var(--cubby-surface-strong);
+    color: var(--cubby-text);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+}
+
+.task-board:hover {
+    border-color: var(--cubby-border-strong);
+    box-shadow: var(--cubby-card-shadow);
+    transform: translateY(-1px);
+}
+
+.task-board a,
+.task-table a {
+    color: var(--cubby-text);
+}
+
+.task-board-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 22px;
+    color: var(--cubby-muted);
+    font-size: 0.82rem;
+}
+
+.task-board-title {
+    margin: 9px 0 10px;
+    font-size: 0.98rem;
+    font-weight: 560;
+    line-height: 1.35;
+}
+
+.task-board-title a {
+    text-decoration: none;
+}
+
+.task-board-title a:hover,
+.task-board-title a:focus {
+    color: var(--cubby-accent);
+    text-decoration: none;
+}
+
+.task-board-recent {
+    border-color: rgba(37, 99, 235, 0.42);
+}
+
+.task-board-status-closed {
+    opacity: 0.68;
+}
+
+.task-board .avatar-letter,
+.avatar-letter {
+    border-radius: 999px;
+}
+
+.task-board-category,
+.task-tags li,
+.task-date,
+.task-board-assignee {
+    border-radius: 999px;
+}
+
+.form-login {
+    width: min(420px, calc(100vw - 36px));
+    margin: 9vh auto 0;
+    padding: 28px;
+    border: 1px solid var(--cubby-border);
+    border-radius: 14px;
+    background: var(--cubby-surface);
+    box-shadow: var(--cubby-shadow);
+}
+
+.form-login::before {
+    display: block;
+    margin-bottom: 18px;
+    color: var(--cubby-text);
+    content: "Kanboard";
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.form-login input[type="text"],
+.form-login input[type="password"] {
+    width: 100%;
+    max-width: 100%;
+}
+
+.form-login .btn {
+    width: 100%;
+}
+
+.reset-password {
+    margin-top: 14px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 12px 14px;
+    }
+
+    .page {
+        padding: 0 12px 24px;
+    }
+
+    #board th.board-column-header {
+        width: 260px;
+        min-width: 260px;
+    }
+}

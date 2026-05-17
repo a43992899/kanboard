@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= $this->app->jsLang() ?>"<?php if ($this->app->isRtlLanguage()): ?> dir="rtl"<?php endif; ?>>
+<html class="theme-<?= $this->text->e($this->user->getTheme()) ?>" lang="<?= $this->app->jsLang() ?>"<?php if ($this->app->isRtlLanguage()): ?> dir="rtl"<?php endif; ?>>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -21,6 +21,7 @@
             <?= $this->asset->css('assets/css/light.min.css') ?>
         <?php endif ?>
         <?= $this->asset->css('assets/css/print.min.css', true, 'print') ?>
+        <?= $this->asset->css('assets/css/cubby-notion.css') ?>
         <?= $this->asset->customCss() ?>
 
         <?php if (! isset($not_editable)): ?>
