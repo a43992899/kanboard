@@ -205,16 +205,29 @@ class UserSession extends Base
     public function getTheme()
     {
         if (! $this->isLogged()) {
-            return 'light';
+            return $this->getDefaultTheme();
         }
 
         $user_session = session_get('user');
 
-        if (array_key_exists('theme', $user_session)) {
+        if (array_key_exists('theme', $user_session) && in_array($user_session['theme'], array('light', 'dark', 'auto'), true)) {
             return $user_session['theme'];
         }
 
-        return 'light';
+        return $this->getDefaultTheme();
+    }
+
+    /**
+     * Get the configured fallback theme
+     *
+     * @access private
+     * @return string
+     */
+    private function getDefaultTheme()
+    {
+        $theme = defined('DEFAULT_THEME') ? DEFAULT_THEME : 'light';
+
+        return in_array($theme, array('light', 'dark', 'auto'), true) ? $theme : 'light';
     }
 
     /**
