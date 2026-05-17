@@ -289,6 +289,11 @@ class UserModel extends Base
      */
     public function create(array $values)
     {
+        if (empty($values['theme'])) {
+            $default_theme = defined('DEFAULT_THEME') ? DEFAULT_THEME : 'light';
+            $values['theme'] = in_array($default_theme, array('light', 'dark', 'auto'), true) ? $default_theme : 'light';
+        }
+
         $this->prepare($values);
         return $this->db->table(self::TABLE)->persist($values);
     }
