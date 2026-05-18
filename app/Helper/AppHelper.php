@@ -37,6 +37,11 @@ class AppHelper extends Base
         return $this->request->isAjax();
     }
 
+    public function getCurrentUri()
+    {
+        return $this->request->getUri();
+    }
+
     /**
      * Render Javascript component
      *

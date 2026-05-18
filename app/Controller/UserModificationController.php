@@ -84,4 +84,42 @@ class UserModificationController extends BaseController
         $values[UserMetadataModel::KEY_TASK_SEARCH_ALL_FIELDS] = $taskSearchAllFields;
         $this->show($values, $errors);
     }
+
+    /**
+     * Quickly switch the current user's theme from the header.
+     */
+    public function switchTheme()
+    {
+        $this->checkCSRFParam();
+
+        $theme = $this->request->getStringParam('theme');
+        if (! in_array($theme, array('auto', 'light', 'dark'), true)) {
+            $this->flash->failure(t('This theme is invalid'));
+            $this->redirectAfterThemeSwitch();
+            return;
+        }
+
+        if (! $this->userModel->update(array(
+            'id' => $this->userSession->getId(),
+            'theme' => $theme,
+        ))) {
+            $this->flash->failure(t('Unable to update this user.'));
+        }
+
+        $this->redirectAfterThemeSwitch();
+    }
+
+    /**
+     * Go back to the page where the switch was clicked.
+     */
+    private function redirectAfterThemeSwitch()
+    {
+        $redirect = $this->request->getStringParam('redirect');
+
+        if (! $this->request->isSafeRedirectUri($redirect)) {
+            $redirect = $this->helper->url->to('DashboardController', 'show');
+        }
+
+        $this->response->redirect($redirect);
+    }
 }

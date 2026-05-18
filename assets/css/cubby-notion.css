@@ -174,6 +174,33 @@ header .menus-container a:focus {
     color: var(--cubby-text);
 }
 
+.cubby-theme-menu {
+    display: inline-flex;
+    align-items: center;
+}
+
+.cubby-theme-menu-button {
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    min-height: 30px;
+    gap: 2px;
+    border-radius: var(--cubby-radius-sm);
+    color: var(--cubby-muted);
+}
+
+.cubby-theme-menu-button:hover,
+.cubby-theme-menu-button:focus {
+    background: var(--cubby-hover);
+    color: var(--cubby-text);
+    text-decoration: none;
+}
+
+.cubby-theme-current a {
+    color: var(--cubby-text);
+    font-weight: 620;
+}
+
 .page {
     max-width: none;
     margin: 0 auto;
