@@ -24,7 +24,7 @@ defined('PLUGIN_INSTALLER') or define('PLUGIN_INSTALLER', strtolower(getenv('PLU
 defined('DEBUG') or define('DEBUG', strtolower(getenv('DEBUG')) === 'true');
 
 // Default UI theme for anonymous sessions and users without a saved preference.
-defined('DEFAULT_THEME') or define('DEFAULT_THEME', getenv('DEFAULT_THEME') ?: 'light');
+defined('DEFAULT_THEME') or define('DEFAULT_THEME', getenv('DEFAULT_THEME') ?: 'auto');
 
 // Logging drivers: syslog, stdout, stderr, system or file
 defined('LOG_DRIVER') or define('LOG_DRIVER', getenv('LOG_DRIVER') ?: 'system');

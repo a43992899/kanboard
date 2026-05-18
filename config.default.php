@@ -13,7 +13,7 @@ define('DATA_DIR', __DIR__.DIRECTORY_SEPARATOR.'data');
 define('DEBUG', false);
 
 // Default UI theme for anonymous sessions and users without a saved preference: light, dark, or auto
-define('DEFAULT_THEME', 'light');
+define('DEFAULT_THEME', 'auto');
 
 // Available log drivers: syslog, stderr, stdout, system or file
 define('LOG_DRIVER', 'system');
